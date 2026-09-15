@@ -6,6 +6,7 @@ model Todo {
   completed Boolean            @default(false)
   deadline  TimestamptzString?
   createdAt TimestamptzString  @default(now())
+  updatedAt TimestamptzString?
 
   @@map("todo")
 }

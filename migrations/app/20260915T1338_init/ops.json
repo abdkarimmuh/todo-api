@@ -41,7 +41,7 @@
     "execute": [
       {
         "description": "create table \"todo\"",
-        "sql": "CREATE TABLE \"public\".\"todo\" (\n  \"completed\" bool DEFAULT false NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"deadline\" timestamptz,\n  \"id\" uuid NOT NULL,\n  \"title\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "sql": "CREATE TABLE \"public\".\"todo\" (\n  \"completed\" bool DEFAULT false NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"deadline\" timestamptz,\n  \"id\" uuid NOT NULL,\n  \"title\" text NOT NULL,\n  \"updatedAt\" timestamptz,\n  PRIMARY KEY (\"id\")\n)",
         "params": []
       }
     ],

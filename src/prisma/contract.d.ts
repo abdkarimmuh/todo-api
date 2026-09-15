@@ -34,7 +34,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'75e487bd1c17e28efe1f19cf0d671a75122f227113a1e28fa6b5888bf2275612'>;
+  StorageHashBase<'b237af34dbdefe1e77cde16e8f63da9735661f088c65558034f84a319788ee87'>;
 export type ExecutionHash =
   ExecutionHashBase<'1d4f58b4f01e0356a8106d5cdf960f2257bb05e0b4f964d9f0a615cfcbc3de32'>;
 export type ProfileHash =
@@ -248,6 +248,7 @@ export type FieldOutputTypes = {
       readonly completed: CodecTypes['pg/bool@1']['output'];
       readonly deadline: CodecTypes['pg/timestamptz-string@1']['output'] | null;
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
     };
   };
 };
@@ -259,6 +260,7 @@ export type FieldInputTypes = {
       readonly completed: CodecTypes['pg/bool@1']['input'];
       readonly deadline: CodecTypes['pg/timestamptz-string@1']['input'] | null;
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'] | null;
     };
   };
 };
@@ -270,6 +272,7 @@ export type StorageColumnTypes = {
       readonly deadline: CodecTypes['pg/timestamptz-string@1']['output'] | null;
       readonly id: CodecTypes['pg/uuid@1']['output'];
       readonly title: CodecTypes['pg/text@1']['output'];
+      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
     };
   };
 };
@@ -281,6 +284,7 @@ export type StorageColumnInputTypes = {
       readonly deadline: CodecTypes['pg/timestamptz-string@1']['input'] | null;
       readonly id: CodecTypes['pg/uuid@1']['input'];
       readonly title: CodecTypes['pg/text@1']['input'];
+      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'] | null;
     };
   };
 };
@@ -292,6 +296,7 @@ export namespace Models {
     completed: CodecTypes['pg/bool@1']['output'];
     deadline: CodecTypes['pg/timestamptz-string@1']['output'] | null;
     createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    updatedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
     readonly [RelationKeys]?: never;
   };
 }
@@ -352,6 +357,11 @@ type ContractBase = Omit<
                   readonly nullable: false;
                   readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
                 };
+                readonly updatedAt: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
               };
               primaryKey: { readonly columns: readonly ['id'] };
               uniques: readonly [];
@@ -403,6 +413,13 @@ type ContractBase = Omit<
                   readonly codecId: 'pg/timestamptz-string@1';
                 };
               };
+              readonly updatedAt: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
             };
             readonly relations: Record<string, never>;
             readonly storage: {
@@ -414,6 +431,7 @@ type ContractBase = Omit<
                 readonly completed: { readonly column: 'completed' };
                 readonly deadline: { readonly column: 'deadline' };
                 readonly createdAt: { readonly column: 'createdAt' };
+                readonly updatedAt: { readonly column: 'updatedAt' };
               };
             };
           };
