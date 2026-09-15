@@ -9,7 +9,9 @@ export async function todoRoutes(app: FastifyInstance) {
     const { id } = req.params as { id: string };
     const todo = todoStore.getById(id);
     if (!todo) return reply.status(404).send({ error: "Todo not found" });
+    return todo;
   });
+
   app.post("/todos", async (req, reply) => {
     const body = req.body as { title: string; deadline?: string };
     const todo = todoStore.create(body);
