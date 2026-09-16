@@ -1,5 +1,16 @@
 // use prisma-8
 
+model User {
+  id        Uuid              @id @default(uuid())
+  email     String            @unique
+  password  String
+  createdAt TimestamptzString @default(now())
+
+  todos     Todo[]
+
+  @@map("user")
+}
+
 model Todo {
   id        Uuid               @id @default(uuid())
   title     String
@@ -7,6 +18,9 @@ model Todo {
   deadline  TimestamptzString?
   createdAt TimestamptzString  @default(now())
   updatedAt TimestamptzString?
+  userId    Uuid
+
+  user      User @relation(fields: [userId], references: [id])
 
   @@map("todo")
 }
